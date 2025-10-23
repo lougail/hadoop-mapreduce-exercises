@@ -1,0 +1,13 @@
+# Hadoop Streaming Command for Azure HDInsight
+# This command runs a MapReduce job using Python scripts
+
+hadoop jar /usr/hdp/current/hadoop-client/hadoop-streaming.jar \
+  -files wasbs://YOUR_CONTAINER@YOUR_STORAGE_ACCOUNT.blob.core.windows.net/data/employees_mapper.py,\
+wasbs://YOUR_CONTAINER@YOUR_STORAGE_ACCOUNT.blob.core.windows.net/data/employees_reducer.py \
+  -input wasbs://YOUR_CONTAINER@YOUR_STORAGE_ACCOUNT.blob.core.windows.net/data/employees.csv \
+  -output wasbs://YOUR_CONTAINER@YOUR_STORAGE_ACCOUNT.blob.core.windows.net/data/results_employees \
+  -mapper employees_mapper.py \
+  -reducer employees_reducer.py
+
+# Replace YOUR_CONTAINER and YOUR_STORAGE_ACCOUNT with your Azure storage details
+# Example: hadoop-trial-YYYY-MM-DDtHH-MM-SS-MMMz@yourstorageaccount
